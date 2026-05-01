@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 require('dotenv').config();
 
 // Import the database connection
@@ -11,12 +10,16 @@ const app = express();
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Basic route to test the server
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to the Express Node.js application.' });
+});
+
+app.get('/test', (req, res) => {
+  res.send('API working');
 });
 
 // Example route to test the database connection
